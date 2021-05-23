@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Page</title>
+    <script type="text/javascript">
+        function clicked() {
+            return confirm('Do you want to add book?');
+        }
+        function clearContents(element) {
+            if(element.value == 'Enter book title' || element.value == 'Enter book description'){
+                element.value = '';
+            }
+        }
+        function Contents(element) {
+            if(element.value == '' && element.name == "title"){
+                element.value = 'Enter book title';
+            }
+            else if(element.value == '' && element.name == "description"){
+                element.value = 'Enter book description';
+            }
+        }
+    </script>
+</head>
+<h1>Add Book</h1>
+<form method="POST" action="/add">
+      <input type="text" name="title" value="Enter book title" style="text-align:center;" onfocus="clearContents(this);"
+             onblur="Contents(this);"><br /><br />
+    <textarea style="text-align:center;" onfocus="clearContents(this);" onblur="Contents(this);"
+              rows = "5" cols = "50" name = "description">Enter book description</textarea><br />
+      <input type="submit" onclick="return clicked()" value="Add">
+</form>
+<br /><form method="GET" action="/">
+    <input type="submit" value="Return">
+</form>
+</body>
+</html>

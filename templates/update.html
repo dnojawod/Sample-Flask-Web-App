@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Page</title>
+    <script type="text/javascript">
+        function clearContents(element) {
+            if(element.value == 'Enter new book title' || element.value == 'Enter new book description'){
+                element.value = '';
+            }
+        }
+        function Contents(element) {
+            if(element.value == '' && element.name == "newtitle"){
+                element.value = 'Enter new book title';
+            }
+            else if(element.value == '' && element.name == "newdescription"){
+                element.value = 'Enter new book description';
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Update Book</h1>
+<ul>
+{% for book in books %}
+    <li>
+{{book.title}}<br />
+<form method="POST" action="/update">
+    <input type="hidden" value="{{book.title}}" name="oldtitle">
+    <input type="text" name="newtitle" value="Enter new book title"
+           style="text-align:center;" onfocus="clearContents(this);" onblur="Contents(this);">
+    <input type="submit" value="Update">
+</form><br />
+        {{book.description}}<br />
+        <form method="POST" action="/update">
+            <input type="hidden" value="{{book.title}}" name="title">
+    <textarea style="text-align:center;" onfocus="clearContents(this);" onblur="Contents(this);"
+              rows = "5" cols = "50" name = "newdescription">Enter new book description</textarea><br />
+      <input type="submit" value="Update">
+</form><br />
+    </li>
+{% endfor %}
+</ul>
+<br /><form method="GET" action="/">
+    <input type="submit" value="Return">
+</form>
+</body>
+</html>

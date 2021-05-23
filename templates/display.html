@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Page</title>
+</head>
+<body>
+<h1>Display Books</h1><br/>
+<h2>Sort Books</h2>
+<a href="{{ url_for('display', sort='id') }}">Id</a><br/>
+<a href="{{ url_for('display', sort='title') }}">Title</a><br/>
+<ul>
+{% for book in books %}
+    <li>
+        {{book.id}}<br />
+{{book.title}}<br />
+{{book.description}}<br />
+    </li>
+{% endfor %}
+</ul>
+<br /><form method="GET" action="/">
+    <input type="submit" value="Return">
+</form>
+</body>
+</html>

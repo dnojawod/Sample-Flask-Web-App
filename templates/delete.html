@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Page</title>
+    <script type="text/javascript">
+        function clicked() {
+            var titles = document.getElementsByName('title');
+            var title_value = "";
+            for(var i = 0; i < titles.length; i++){
+                if(titles[i].checked){
+                    title_value = titles[i].value;
+                }
+            }
+            if(title_value != ""){
+                document.getElementById("title").value = title_value;
+                return confirm('Do you want to delete book ' + title_value + '?');
+                }
+            else{
+                alert("No selected book! Choose a book to delete");
+                return false
+                }
+        }
+    </script>
+</head>
+<body>
+    <h1>Delete Book</h1>
+    <form method="POST" action="/delete">
+        {% for book in books %}
+            <input type="radio" value="{{book.title}}" name="title">
+            {{book.title}}<br />
+            {{book.description}}<br />
+        {% endfor %}
+            <input type="hidden" id="title" value="" name="delete_title"><br />
+            <input type="submit" onclick="return clicked()" value="Delete">
+    </form><br />
+    <form method="GET" action="/">
+        <input type="submit" value="Return">
+    </form>
+</body>
+</html>

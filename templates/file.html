@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Text File Page</title>
+</head>
+<body>
+<h1>Book Text File</h1>
+<form method="POST" action="/file">
+    <input type="hidden" value="updatefile" name="updatefile">
+    <input type="submit" value="Update">
+</form><br />
+<form method="POST" action="/file">
+    <input type="hidden" value="downloadfile" name="downloadfile">
+    <input type="submit" value="Download">
+</form><br />
+<form method="GET" action="/">
+    <input type="submit" value="Return">
+</form>
+</body>
+</html>
